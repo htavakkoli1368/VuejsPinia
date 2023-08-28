@@ -12,7 +12,7 @@ export default {
   props: ['dt'],
   setup(props) {
     const data = ref(props.dt)
-    const btnClick = () => console.log('button clicked')
+    const btnClick = () => console.log('button clicked not apply')
     return {
       data,
       btnClick
