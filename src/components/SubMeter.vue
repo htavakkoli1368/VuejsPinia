@@ -12,16 +12,10 @@ export default {
   props: ['dt'],
   setup(props) {
     const data = ref(props.dt)
-    const search = ref('')
-    const age = ref('')
-    const firstname = ref('')
     const btnClick = () => console.log('button clicked')
     return {
       data,
-      btnClick,
-      search,
-      age,
-      firstname
+      btnClick
     }
   }
 }
