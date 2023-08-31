@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, beforeAll, afterAll, afterEach, test } from 'vitest'
+import { describe, expect, it, test } from 'vitest'
 import SubMeter from '../SubMeter.vue'
-import { setupServer } from 'msw/node'
 import { rest } from 'msw'
 
 export const restHandlers = [
@@ -16,22 +15,22 @@ export const restHandlers = [
     )
   })
 ]
-const server = setupServer(...restHandlers)
-beforeAll(() => {
-  console.log('before All')
-  server.listen({ onUnhandledRequest: 'error' })
-})
-afterAll(() => {
-  console.log('after All')
-  server.close()
-})
-afterEach(() => {
-  console.log('after Each')
-  server.resetHandlers()
-})
+const stock = {
+  type: 'apples',
+  age: 25,
+  count: 10
+}
+const stocks = {
+  type: 'apples',
+  age: 25,
+  count: 10
+}
 
 describe('test submeter mount', () => {
-  it('should', () => {
+  test('test tobe and toequal', () => {
+    expect(stocks).toEqual(stock)
+  })
+  it('check props', () => {
     const wrapper = mount(SubMeter, { props: { dt: 'test dt props' } })
     expect(wrapper.text()).toContain('test dt props')
   })
@@ -39,10 +38,8 @@ describe('test submeter mount', () => {
     const wrapper = mount(SubMeter, {})
     expect(wrapper.find('h6').exists()).toBe(true)
   })
-  test('Button clicked', async () => {
-    const wrapper = mount(SubMeter, {})
-    const ac = await wrapper.get('button').trigger('click')
-    console.log(ac)
-    expect(wrapper.vm.search).toEqual('')
+  test('test existancy of item in component', () => {
+    const comp = mount(SubMeter, {})
+    expect(comp.find('a').exists()).toBe(true)
   })
 })

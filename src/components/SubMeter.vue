@@ -3,6 +3,7 @@
     <p>our props:</p>
     <h6>{{ data }}</h6>
     <button @click="btnClick">click me</button>
+    <a href="" />
   </div>
 </template>
 
